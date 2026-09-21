@@ -18,10 +18,13 @@ mooncake_master \
     --http_metadata_server_port=30001 \
     --rpc_port=30002 > "$LOG_DIR/mooncake.log" 2>&1 &
 
+NCCL_IB_HCA="=mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7" \
 PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True" \
 MOONCAKE_TE_META_DATA_SERVER="P2PHANDSHAKE" \
 MOONCAKE_MASTER="127.0.0.1:30002" \
 MOONCAKE_LOCAL_HOSTNAME="${HOST_IP}" \
+MOONCAKE_PROTOCOL="rdma" \
+MOONCAKE_DEVICE="mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7" \
 MOONCAKE_GLOBAL_SEGMENT_SIZE="100gb" \
 SGLANG_ENABLE_METRICS_DEVICE_TIMER=1 \
 SGLANG_ENABLE_STORAGE_METRICS=1 \
@@ -43,7 +46,7 @@ sglang serve \
     --enable-metrics \
     --enable-cache-report \
     --enable-hierarchical-cache \
-    --hicache-ratio 2 \
+    --hicache-ratio 1 \
     --hicache-write-policy write_through \
     --hicache-storage-prefetch-policy wait_complete \
     --hicache-storage-backend=mooncake > "$LOG_DIR/sglang.log" 2>&1
