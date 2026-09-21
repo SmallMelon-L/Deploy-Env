@@ -1,0 +1,29 @@
+[project]
+name = "deploy-env"
+version = "0.0.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "deep_ep",
+    "modelscope",
+    "sglang",
+    "sglang-router",
+    "nvidia-nccl-cu13>=2.30.4",
+    "mooncake-transfer-engine-cuda13>=0.3.13",
+    "yicloud-sdk-python>=0.4.1",
+]
+
+[tool.uv]
+environments = ["sys_platform == 'linux'"]
+override-dependencies = [
+    "nvidia-nccl-cu13>=2.30.4",
+]
+no-build-isolation-package = [
+    "deep-ep",
+]
+
+[tool.uv.sources]
+deep_ep = { git = "https://github.com/deepseek-ai/DeepEP", rev = "dd758caf451848bd150e1046af3d0a73e5fff38d" }
+sglang = { path = "3rdparty/sglang/python", editable = true }
+sglang-router = { path = "3rdparty/sglang/sgl-model-gateway/bindings/python", editable = true }
