@@ -23,3 +23,5 @@ logs/
 /results/
 /exp/
 .envrc
+
+scripts/port-mapping
