@@ -36,7 +36,7 @@ SGLANG_ENABLE_METRICS_DEVICE_TIMER=1 \
 SGLANG_ENABLE_STORAGE_METRICS=1 \
 sglang serve \
     --model-path /mnt/models/Kimi-K3 \
-    --served-model-name kimi-k3 \
+    --served-model-name Kimi-K3 \
     --reasoning-parser kimi_k3 \
     --tool-call-parser kimi_k3 \
     --trust-remote-code \
@@ -46,6 +46,7 @@ sglang serve \
     --moe-runner-backend marlin \
     --decode-attention-backend flashmla \
     --load-balance-method total_requests \
+    --allow-auto-truncate \
     --enable-prefill-delayer \
     --prefill-delayer-max-delay-passes 16 \
     --dist-init-addr ${SGLANG_DIST_ADDR} \

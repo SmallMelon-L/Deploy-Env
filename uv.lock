@@ -1676,7 +1676,7 @@ wheels = [
 
 [[package]]
 name = "nvshmem4py-cu13"
-version = "0.3.1"
+version = "0.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cuda-core" },
@@ -1687,8 +1687,8 @@ dependencies = [
     { name = "nvidia-nvshmem-cu13" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/54/63/f6cff88f1389597fcd93231720ac3d9dfdac302030548f549f97b62a4094/nvshmem4py_cu13-0.3.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_34_aarch64.whl", hash = "sha256:bba2e744e11644c8927eea9596102b899d80c1bfe807837f5940996e8d9a8fe8", size = 3012570, upload-time = "2026-06-11T17:20:34.675Z" },
-    { url = "https://files.pythonhosted.org/packages/3e/57/f02bf9dd6792e2e7853ceaef24f1fbc252cbe71da325cbd6d06f4807611a/nvshmem4py_cu13-0.3.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_34_x86_64.whl", hash = "sha256:51d38cae4ee0544815150f40005c0e71ea44aef2ad926f3b6492341063c64e73", size = 3118281, upload-time = "2026-06-11T17:21:03.941Z" },
+    { url = "https://files.pythonhosted.org/packages/cf/84/5a5f41be72d4ac6e36aacd1be214d31db6be0507c00e2ecabf4e43d676ff/nvshmem4py_cu13-0.4.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_34_aarch64.whl", hash = "sha256:c34377488f3fa2de62f26a30677a6a378fdfda04461a64d2281975cde416601a", size = 4773487, upload-time = "2026-09-22T23:42:38.462Z" },
+    { url = "https://files.pythonhosted.org/packages/03/47/e949368e061d1f051b2001d2c9d577c0bea98405cad96ce12b88a62c75bc/nvshmem4py_cu13-0.4.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_34_x86_64.whl", hash = "sha256:3e6a4f6d50304c0dcc5a0334753b09290d3770f0566aee012ca329691c219946", size = 4988644, upload-time = "2026-09-22T23:42:56.296Z" },
 ]
 
 [[package]]

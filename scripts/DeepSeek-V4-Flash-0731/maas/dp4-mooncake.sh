@@ -35,6 +35,7 @@ sglang serve \
     --dp-size 4 --enable-dp-attention --enable-dp-lm-head \
     --ep 4 \
     --load-balance-method total_requests \
+    --allow-auto-truncate \
     --enable-prefill-delayer \
     --prefill-delayer-max-delay-passes 16 \
     --moe-runner-backend flashinfer_mxfp4 \
