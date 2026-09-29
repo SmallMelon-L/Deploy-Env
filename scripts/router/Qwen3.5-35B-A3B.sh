@@ -26,4 +26,5 @@ python -m sglang_router.launch_router \
     --retry-initial-backoff-ms 5000 \
     --retry-max-backoff-ms 5000 \
     --retry-backoff-multiplier 1.0 \
-    --request-timeout-secs 36000
+    --request-timeout-secs 36000 \
+    --enable-igw

@@ -8,7 +8,7 @@ export TZ="${TZ:-Asia/Shanghai}"
 cd "${REPO_ROOT}"
 source .venv/bin/activate
 
-ROUTER_LOG_DIR="${ROUTER_LOG_DIR:-${REPO_ROOT}/logs/router/DeepSeek-V4-Flash/$(date +%Y%m%d_%H%M%S)}"
+ROUTER_LOG_DIR="${ROUTER_LOG_DIR:-${REPO_ROOT}/logs/router/GLM-5.3/$(date +%Y%m%d_%H%M%S)}"
 
 mkdir -p "${ROUTER_LOG_DIR}"
 
