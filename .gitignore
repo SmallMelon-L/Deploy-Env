@@ -25,3 +25,5 @@ logs/
 .envrc
 
 scripts/port-mapping
+
+/LiteLLM

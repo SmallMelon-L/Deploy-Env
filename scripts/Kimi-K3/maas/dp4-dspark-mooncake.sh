@@ -9,7 +9,7 @@ echo "MASTER: ${SGLANG_DIST_ADDR}, RANK: ${NODE_RANK}, MOONCAKE: ${MOONCAKE_MAST
 cd /root/Deploy-Env
 source .venv/bin/activate
 
-LOG_DIR="${LOG_DIR:-/root/Deploy-Env/logs/Kimi-K3/dp4-mooncake/${MASTER_ADDR-:$(TZ=Asia/Shanghai date '+%Y-%m-%d_%H-%M-%S')}}"
+LOG_DIR="${LOG_DIR:-/root/Deploy-Env/logs/Kimi-K3/dp4-mooncake/${MASTER_ADDR}/$(TZ=Asia/Shanghai date '+%Y-%m-%d_%H-%M-%S')}"
 mkdir -p "$LOG_DIR" || exit 1
 printf 'Mooncake log: %s/mooncake.log\nSGLang log: %s/sglang.log\n' "$LOG_DIR" "$LOG_DIR"
 
@@ -69,7 +69,7 @@ sglang serve \
     --enable-metrics \
     --enable-cache-report \
     --enable-hierarchical-cache \
-    --hicache-ratio 2 \
+    --hicache-ratio 1.5 \
     --hicache-write-policy write_through \
     --hicache-storage-prefetch-policy wait_complete \
     --hicache-storage-backend=mooncake > "$LOG_DIR/sglang.log" 2>&1
