@@ -22,7 +22,7 @@ LOG = logging.getLogger("elastic_pool")
 MACHINES_PER_REPLICA = 4
 GPUS_PER_NODE = 8
 GPUS_PER_REPLICA = 32
-SCALE_UP_CONFIRM_SECONDS = 300
+SCALE_UP_CONFIRM_SECONDS = 600
 
 
 def integer(value, field):

@@ -27,3 +27,4 @@ logs/
 scripts/port-mapping
 
 /LiteLLM
+/experiments

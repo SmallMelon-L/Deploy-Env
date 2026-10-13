@@ -31,30 +31,30 @@ class ScaleUpConfirmationTests(unittest.TestCase):
                 patch.object(pool.time, "time", return_value=1000 + seconds):
             self.controller.tick()
 
-    def test_waits_full_five_minutes_and_keeps_original_target(self):
+    def test_waits_full_ten_minutes_and_keeps_original_target(self):
         self.tick(0)
-        for seconds in (60, 120, 180, 240, 299):
+        for seconds in (*range(60, 600, 60), 599):
             self.tick(seconds, idle=16)
             self.api.scale.assert_not_called()
-        self.tick(300, idle=16)
+        self.tick(600, idle=16)
         self.api.scale.assert_called_once_with(self.args, 4)
         self.assertEqual(json.loads(self.path.read_text())["pending"]["target"], 4)
         self.assertIsNone(self.controller.scale_up_candidate)
-        self.tick(360, idle=16)
+        self.tick(660, idle=16)
         self.api.scale.assert_called_once()
 
     def test_insufficient_nodes_restart_with_smaller_plan(self):
         self.tick(0)
         self.tick(240, idle=4)
         self.assertEqual(self.controller.scale_up_candidate["target"], 3)
-        self.tick(300, idle=8)
+        self.tick(600, idle=8)
         self.api.scale.assert_not_called()
-        self.tick(540, idle=8)
+        self.tick(840, idle=8)
         self.api.scale.assert_called_once_with(self.args, 3)
 
     def test_fewer_nodes_can_still_support_fixed_plan(self):
         self.tick(0, idle=7)
-        for seconds in (60, 120, 180, 240, 300):
+        for seconds in range(60, 601, 60):
             self.tick(seconds, idle=4)
         self.api.scale.assert_called_once_with(self.args, 3)
 
@@ -62,20 +62,20 @@ class ScaleUpConfirmationTests(unittest.TestCase):
         self.tick(0)
         self.tick(240, idle=3)
         self.assertIsNone(self.controller.scale_up_candidate)
-        self.tick(300)
-        self.tick(540)
-        self.api.scale.assert_not_called()
         self.tick(600)
+        self.tick(840)
+        self.api.scale.assert_not_called()
+        self.tick(1200)
         self.api.scale.assert_called_once_with(self.args, 4)
 
     def test_queue_even_when_covered_cancels_confirmation(self):
         self.tick(0)
         self.tick(240, jobs=1, gpus=8)
         self.assertIsNone(self.controller.scale_up_candidate)
-        self.tick(300)
-        self.tick(540)
-        self.api.scale.assert_not_called()
         self.tick(600)
+        self.tick(840)
+        self.api.scale.assert_not_called()
+        self.tick(1200)
         self.api.scale.assert_called_once_with(self.args, 4)
 
     def test_new_queue_shortfall_scales_down_immediately(self):
@@ -88,8 +88,8 @@ class ScaleUpConfirmationTests(unittest.TestCase):
         self.tick(0)
         self.tick(240, stable=False)
         self.assertIsNone(self.controller.scale_up_candidate)
-        self.tick(300)
-        self.tick(540)
+        self.tick(600)
+        self.tick(840)
         self.api.scale.assert_not_called()
 
     def test_sampling_error_cancels_confirmation(self):
@@ -97,8 +97,8 @@ class ScaleUpConfirmationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "bad sample"):
             self.tick(240, error=ValueError("bad sample"))
         self.assertIsNone(self.controller.scale_up_candidate)
-        self.tick(300)
-        self.tick(540)
+        self.tick(600)
+        self.tick(840)
         self.api.scale.assert_not_called()
 
     def test_external_replica_change_starts_fresh_window(self):
@@ -106,14 +106,14 @@ class ScaleUpConfirmationTests(unittest.TestCase):
         self.tick(240, replicas=3)
         self.assertEqual(self.controller.scale_up_candidate["previous"], 3)
         self.assertEqual(self.controller.scale_up_candidate["started_at"], 240)
-        self.tick(300, replicas=3)
+        self.tick(600, replicas=3)
         self.api.scale.assert_not_called()
 
     def test_final_deployment_recheck_failure_cancels_confirmation(self):
         self.tick(0)
         self.api.deployment.return_value = {"Replicas": 3}
         with self.assertRaisesRegex(ValueError, "changed before scaling"):
-            self.tick(300)
+            self.tick(600)
         self.api.scale.assert_not_called()
         self.assertIsNone(self.controller.scale_up_candidate)
 
@@ -121,26 +121,26 @@ class ScaleUpConfirmationTests(unittest.TestCase):
         self.tick(0)
         self.api.scale.side_effect = TimeoutError("uncertain response")
         with self.assertRaises(TimeoutError):
-            self.tick(300)
+            self.tick(600)
         self.assertEqual(json.loads(self.path.read_text())["pending"]["target"], 4)
-        self.tick(360)
+        self.tick(660)
         self.api.scale.assert_called_once()
 
     def test_restart_requires_new_confirmation_window(self):
         self.tick(0)
         self.controller = pool.Controller(self.args, self.api, self.path)
-        self.tick(300)
-        self.api.scale.assert_not_called()
         self.tick(600)
+        self.api.scale.assert_not_called()
+        self.tick(1200)
         self.api.scale.assert_called_once_with(self.args, 4)
 
     def test_reset_pending_also_resets_confirmation(self):
         self.tick(0)
         self.controller.reset_pending()
         self.assertIsNone(self.controller.scale_up_candidate)
-        self.tick(300)
-        self.api.scale.assert_not_called()
         self.tick(600)
+        self.api.scale.assert_not_called()
+        self.tick(1200)
         self.api.scale.assert_called_once_with(self.args, 4)
 
     def test_cooldown_precedes_confirmation(self):
@@ -148,15 +148,15 @@ class ScaleUpConfirmationTests(unittest.TestCase):
         self.tick(0)
         self.assertIsNone(self.controller.scale_up_candidate)
         self.tick(120)
-        self.tick(300)
+        self.tick(600)
         self.api.scale.assert_not_called()
-        self.tick(420)
+        self.tick(720)
         self.api.scale.assert_called_once_with(self.args, 4)
 
     def test_dry_run_waits_without_writing_or_scaling(self):
         self.args.apply = False
         self.tick(0)
-        self.tick(300)
+        self.tick(600)
         self.api.scale.assert_not_called()
         self.assertFalse(self.path.exists())
 

@@ -63,7 +63,7 @@ sglang serve \
     --chunked-prefill-size 16384 \
     --max-running-requests 64 \
     --mamba-radix-cache-strategy extra_buffer_lazy \
-    --max-mamba-cache-size 256 \
+    --max-mamba-cache-size 512 \
     --cuda-graph-max-bs-decode 16 \
     --mem-fraction-static 0.90 \
     --enable-metrics \
