@@ -6,12 +6,16 @@ export SGLANG_DIST_ADDR="${SGLANG_DIST_ADDR:-${MASTER_ADDR}:20000}"
 cd /root/Deploy-Env
 source .venv/bin/activate
 
+LOG_DIR="${LOG_DIR:-/root/Deploy-Env/logs/Kimi-K3/pp4/${MASTER_ADDR}/$(TZ=Asia/Shanghai date '+%Y-%m-%d_%H-%M-%S')}"
+mkdir -p "$LOG_DIR" || exit 1
+printf 'SGLang log: %s/sglang.log\n' "$LOG_DIR"
+
 NCCL_IB_HCA="=mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7" \
 PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True" \
 SGLANG_PP_LAYER_PARTITION="24,24,24,21" \
 sglang serve \
     --model-path /mnt/models/Kimi-K3 \
-    --served-model-name kimi-k3 \
+    --served-model-name Kimi-K3 \
     --reasoning-parser kimi_k3 \
     --tool-call-parser kimi_k3 \
     --trust-remote-code \
@@ -39,4 +43,4 @@ sglang serve \
     --enable-cache-report \
     --enable-hierarchical-cache \
     --hicache-ratio 2 \
-    --hicache-write-policy write_through
+    --hicache-write-policy write_through > "$LOG_DIR/sglang.log" 2>&1

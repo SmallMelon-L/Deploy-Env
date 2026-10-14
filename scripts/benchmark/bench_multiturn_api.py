@@ -113,7 +113,8 @@ async def benchmark(args):
     url = args.base_url.rstrip("/") + "/chat/completions"
     totals = [0, 0, 0]
 
-    async with aiohttp.ClientSession(headers=headers) as session:
+    connector = aiohttp.TCPConnector(force_close=True)
+    async with aiohttp.ClientSession(headers=headers, connector=connector) as session:
         if args.flush_cache_url:
             async with session.post(args.flush_cache_url) as response:
                 response.raise_for_status()

@@ -16,15 +16,17 @@ class ScaleUpConfirmationTests(unittest.TestCase):
         self.path = Path(self.directory.name) / "state.json"
         self.args = SimpleNamespace(apply=True, cooldown=120, interval=60)
         self.api = Mock()
-        self.deployment = {"Replicas": 2, "UpdateTimestamp": "unchanged"}
+        self.deployment = {"Replicas": 2, "Status": "Running",
+                           "UpdateTimestamp": "unchanged"}
         self.api.deployment.return_value = self.deployment
         self.controller = pool.Controller(self.args, self.api, self.path)
 
     def tick(self, seconds, *, replicas=2, idle=8, jobs=0, gpus=0,
-             stable=True, error=None):
+             stable=True, releasing=0, ready=None, error=None):
         sample = pool.Snapshot(replicas, idle, jobs, gpus,
                                max(0, replicas - 1) * 32,
-                               replicas * 4, replicas * 4, 0, stable)
+                               replicas * 4 if ready is None else ready,
+                               replicas * 4, releasing, stable)
         with patch.object(pool, "snapshot", return_value=(sample, self.deployment),
                           side_effect=error), \
                 patch.object(pool.time, "monotonic", return_value=seconds), \
@@ -86,10 +88,41 @@ class ScaleUpConfirmationTests(unittest.TestCase):
 
     def test_unstable_deployment_cancels_confirmation(self):
         self.tick(0)
-        self.tick(240, stable=False)
+        self.tick(240, stable=False, ready=4)
         self.assertIsNone(self.controller.scale_up_candidate)
         self.tick(600)
         self.tick(840)
+        self.api.scale.assert_not_called()
+
+    def test_releases_do_not_interrupt_existing_confirmation(self):
+        self.tick(0)
+        for seconds in range(60, 600, 60):
+            self.tick(seconds, stable=False, releasing=32)
+            self.api.scale.assert_not_called()
+        self.tick(600, stable=False, releasing=32)
+        self.api.scale.assert_called_once_with(self.args, 4)
+
+    def test_releases_prevent_starting_confirmation(self):
+        self.tick(0, stable=False, releasing=32)
+        self.tick(600, stable=False, releasing=32)
+        self.assertIsNone(self.controller.scale_up_candidate)
+        self.api.scale.assert_not_called()
+        self.tick(660)
+        self.tick(1260)
+        self.api.scale.assert_called_once_with(self.args, 4)
+
+    def test_capacity_loss_during_releases_cancels_without_new_plan(self):
+        self.tick(0)
+        self.tick(240, idle=4, stable=False, releasing=32)
+        self.assertIsNone(self.controller.scale_up_candidate)
+        self.tick(600, stable=False, releasing=32)
+        self.api.scale.assert_not_called()
+
+    def test_nonrunning_deployment_during_releases_cancels_confirmation(self):
+        self.tick(0)
+        self.deployment["Status"] = "Updating"
+        self.tick(240, stable=False, releasing=32)
+        self.assertIsNone(self.controller.scale_up_candidate)
         self.api.scale.assert_not_called()
 
     def test_sampling_error_cancels_confirmation(self):

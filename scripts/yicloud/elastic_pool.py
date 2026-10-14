@@ -226,8 +226,14 @@ class Controller:
         pending = self.state.get("pending")
         cooling_down = time.time() < self.state.get("cooldown_until", 0)
         candidate = self.scale_up_candidate
+        # Once a plan is selected from a fully stable snapshot, releases on
+        # other nodes do not invalidate its already available capacity.
+        deployment_ready = (
+            deployment.get("Status") == "Running" and s.replicas > 0
+            and s.ready_instances == s.total_instances
+            == s.replicas * MACHINES_PER_REPLICA)
         if candidate is not None and (
-                pending or not s.stable or cooling_down or s.queued_jobs
+                pending or not deployment_ready or cooling_down or s.queued_jobs
                 or s.replicas != candidate["previous"]
                 or target < candidate["target"]):
             self.cancel_scale_up("expansion requirements no longer satisfied")
@@ -264,7 +270,7 @@ class Controller:
                             "--apply --reset-pending. State: %s",
                             pending["target"], self.state_path)
             return
-        if not s.stable:
+        if not s.stable and self.scale_up_candidate is None:
             LOG.info("Deployment or GPU release is in progress; wait")
             return
         if cooling_down:
