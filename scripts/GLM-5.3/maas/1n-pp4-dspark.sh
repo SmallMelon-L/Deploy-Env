@@ -4,11 +4,11 @@ export HOST_IP=$(hostname -i)
 export MASTER_ADDR="${MASTER_ADDR:-${HOST_IP}}"
 printf 'MASTER_ADDR: %s\n' "$MASTER_ADDR"
 
-cd /root/Deploy-Env
+cd /root/Deploy-Env-AvaServe
 source .venv/bin/activate
 python scripts/GLM-5.3/maas/prepare-dspark-config.py || exit 1
 
-LOG_DIR="${LOG_DIR:-/root/Deploy-Env/logs/GLM-5.3/1n-pp4-dspark/$(TZ=Asia/Shanghai date '+%Y-%m-%d_%H-%M-%S')}"
+LOG_DIR="${LOG_DIR:-/root/Deploy-Env-AvaServe/logs/GLM-5.3/1n-pp4-dspark/$(TZ=Asia/Shanghai date '+%Y-%m-%d_%H-%M-%S')}"
 mkdir -p "$LOG_DIR"
 printf 'SGLang log: %s/sglang.log\n' "$LOG_DIR"
 

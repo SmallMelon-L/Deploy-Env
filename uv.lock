@@ -424,23 +424,6 @@ nvtx = [
 ]
 
 [[package]]
-name = "cython"
-version = "3.3.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/a9/d8/4981ef716ad0e3ff0d3ef383aefc6b03c4a88dee33b272bf8e0d833001ca/cython-3.3.0.tar.gz", hash = "sha256:eed0d93fbca7087f143b42c34b05a825849bdf17f101572c2105acfa49aa88b8", size = 3727515, upload-time = "2026-08-22T05:16:39.493Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/91/8b/53d4a84de853b39940a0e35a6a2a9ed5f54cb05468daee95bc0fd1c2a178/cython-3.3.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:7e321ae700995a16dc3055ada06ffb8d61e1a7434e5d0e811547a45ac1015ebd", size = 3258974, upload-time = "2026-08-22T05:17:09.908Z" },
-    { url = "https://files.pythonhosted.org/packages/6a/4e/6b1c5a4e6bbe1726104de007aa2fdf01a3e2e386b4ec93c7be5f5085d53f/cython-3.3.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:428fafed98ea26927000a287b4dfc9ef07339f56656a5329a34eaa593f79a4f8", size = 3412225, upload-time = "2026-08-22T05:17:12.281Z" },
-    { url = "https://files.pythonhosted.org/packages/ba/6d/542e32908fb421d88354f327ed6450e14240f9825d25393065bc65f4723f/cython-3.3.0-cp39-abi3-manylinux1_i686.manylinux_2_28_i686.manylinux_2_5_i686.whl", hash = "sha256:169e56fd411f4cd5bba51c82f8239421d547a846099db2b261e4aed48ba9f51f", size = 3358395, upload-time = "2026-08-22T05:17:43.036Z" },
-    { url = "https://files.pythonhosted.org/packages/9c/7c/ddaf197bc65b581e1891657940bc4f7cb1f740e822115e828920b3a119ce/cython-3.3.0-cp39-abi3-manylinux2014_armv7l.manylinux_2_17_armv7l.manylinux_2_31_armv7l.whl", hash = "sha256:29f38ebafdf23e3da2516f40c4d065da38bfe002181bf93e2b8cf1262449aba6", size = 3041760, upload-time = "2026-08-22T05:17:44.907Z" },
-    { url = "https://files.pythonhosted.org/packages/19/a7/ae5ec3e34d43da846ed4c425734752d83aae0dae49feb929f09c90fc9afa/cython-3.3.0-cp39-abi3-musllinux_1_2_aarch64.whl", hash = "sha256:75c4ae8a6d3a5ccf3cdaba8ab32e6a8d0cd38e3a476aa7ac12df8f8171a8d570", size = 3156152, upload-time = "2026-08-22T05:17:46.884Z" },
-    { url = "https://files.pythonhosted.org/packages/31/44/c60b601fc43f0b08e9d6f14b94e0dd02eb0ca8d60f46e242ace7191ac1be/cython-3.3.0-cp39-abi3-musllinux_1_2_armv7l.whl", hash = "sha256:b94fb5613b9fe34c27d13ec9972dc0dcd2a2155db2902e93921cadc162610a38", size = 3046690, upload-time = "2026-08-22T05:17:48.731Z" },
-    { url = "https://files.pythonhosted.org/packages/b0/9e/d735c26ed907563d3365534006acb263651c2d3b87fee804f7a483dd1714/cython-3.3.0-cp39-abi3-musllinux_1_2_i686.whl", hash = "sha256:c4558ba85849ab65dc57e10fd0efb13fabd9d3c09981a2566e18dec7cf47586a", size = 3373534, upload-time = "2026-08-22T05:17:50.7Z" },
-    { url = "https://files.pythonhosted.org/packages/e0/e8/aa7b4f3a28d6e8117c76e2cf78a0df7a503486cdf7243c5b53200c9533a1/cython-3.3.0-cp39-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:311a016369adfd1e0015c4f9819168fc0e518451d7efb4435c30d65a3a26d52b", size = 3265110, upload-time = "2026-08-22T05:17:52.577Z" },
-    { url = "https://files.pythonhosted.org/packages/bf/77/67b0b24e45073a699610e50f00c18474ff9b09ea29ecc95083bdf5e60acd/cython-3.3.0-py3-none-any.whl", hash = "sha256:9b24b5c8cd536946b62086fcafee6d5509d3f549f72d553d2336af87ffbe0da1", size = 1349151, upload-time = "2026-08-22T05:16:36.741Z" },
-]
-
-[[package]]
 name = "datasets"
 version = "5.0.1"
 source = { registry = "https://pypi.org/simple" }
@@ -501,7 +484,7 @@ requires-dist = [
     { name = "modelscope" },
     { name = "mooncake-transfer-engine-cuda13", specifier = ">=0.3.13" },
     { name = "nvidia-nccl-cu13", specifier = ">=2.30.4" },
-    { name = "sglang", editable = "3rdparty/sglang/python" },
+    { name = "sglang", editable = "3rdparty/AvaServe/python" },
     { name = "sglang-router", editable = "3rdparty/sglang/sgl-model-gateway/bindings/python" },
     { name = "yicloud-sdk-python", specifier = ">=0.4.1" },
 ]
@@ -1675,23 +1658,6 @@ wheels = [
 ]
 
 [[package]]
-name = "nvshmem4py-cu13"
-version = "0.4.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "cuda-core" },
-    { name = "cuda-pathfinder" },
-    { name = "cuda-python" },
-    { name = "cython" },
-    { name = "numpy" },
-    { name = "nvidia-nvshmem-cu13" },
-]
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/cf/84/5a5f41be72d4ac6e36aacd1be214d31db6be0507c00e2ecabf4e43d676ff/nvshmem4py_cu13-0.4.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_34_aarch64.whl", hash = "sha256:c34377488f3fa2de62f26a30677a6a378fdfda04461a64d2281975cde416601a", size = 4773487, upload-time = "2026-09-22T23:42:38.462Z" },
-    { url = "https://files.pythonhosted.org/packages/03/47/e949368e061d1f051b2001d2c9d577c0bea98405cad96ce12b88a62c75bc/nvshmem4py_cu13-0.4.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_34_x86_64.whl", hash = "sha256:3e6a4f6d50304c0dcc5a0334753b09290d3770f0566aee012ca329691c219946", size = 4988644, upload-time = "2026-09-22T23:42:56.296Z" },
-]
-
-[[package]]
 name = "openai"
 version = "2.6.1"
 source = { registry = "https://pypi.org/simple" }
@@ -2319,19 +2285,19 @@ wheels = [
 
 [[package]]
 name = "sgl-deep-gemm"
-version = "0.2.0"
+version = "0.1.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "apache-tvm-ffi" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0c/82/a915cd9094cade963c61dff0e92fbd38a873f7662ab3c213f8477c039cee/sgl_deep_gemm-0.2.0-py3-none-manylinux2014_aarch64.whl", hash = "sha256:66c0f28bed4ccbbf61d10983c9dd053b638443110b940f73e4c0a4a104094e84", size = 5188348, upload-time = "2026-09-14T06:16:36.274Z" },
-    { url = "https://files.pythonhosted.org/packages/d3/7e/f334fc133f1a710841b0d6ddf8d29148c6b367f32b270f8664529e622559/sgl_deep_gemm-0.2.0-py3-none-manylinux2014_x86_64.whl", hash = "sha256:f208c333fca6686b482abc1e2dbb1960cd73be92f632829dc46fd6f7e9b9fb4d", size = 5419649, upload-time = "2026-09-14T06:16:37.827Z" },
+    { url = "https://files.pythonhosted.org/packages/e2/81/204823503054b3cee5bc8070dd5011cc7df2ce9af53d6c765b967b59efa9/sgl_deep_gemm-0.1.7-py3-none-manylinux2014_aarch64.whl", hash = "sha256:9549a3d1c2028ca5b71c1ad91a66c74a1ef2a93ec014a8d1378ce157a8bb1d30", size = 4722348, upload-time = "2026-08-31T11:39:16.545Z" },
+    { url = "https://files.pythonhosted.org/packages/7a/ad/6f9aa43796dc2f028cbe62b43c276dbce8091b955eb918d42a147d97b377/sgl_deep_gemm-0.1.7-py3-none-manylinux2014_x86_64.whl", hash = "sha256:f4e67086dc685ddcfcbb7833cc9770afd850cab23e173e77b9b18c19de0c2836", size = 4877609, upload-time = "2026-08-31T11:39:18.146Z" },
 ]
 
 [[package]]
 name = "sglang"
-source = { editable = "3rdparty/sglang/python" }
+source = { editable = "3rdparty/AvaServe/python" }
 dependencies = [
     { name = "aiohttp" },
     { name = "anthropic" },
@@ -2365,7 +2331,6 @@ dependencies = [
     { name = "nvidia-cutlass-dsl", extra = ["cu13"] },
     { name = "nvidia-mathdx" },
     { name = "nvidia-ml-py" },
-    { name = "nvshmem4py-cu13" },
     { name = "openai" },
     { name = "openai-harmony" },
     { name = "orjson" },
@@ -2381,7 +2346,6 @@ dependencies = [
     { name = "python-multipart" },
     { name = "pyzmq" },
     { name = "quack-kernels" },
-    { name = "regex" },
     { name = "requests" },
     { name = "scipy" },
     { name = "sentencepiece" },
@@ -2427,7 +2391,7 @@ requires-dist = [
     { name = "bitsandbytes", marker = "extra == 'test'" },
     { name = "blobfile", specifier = "==3.0.0" },
     { name = "build" },
-    { name = "cache-dit", marker = "extra == 'diffusion'", specifier = "==1.5.1" },
+    { name = "cache-dit", marker = "extra == 'diffusion'", specifier = "==1.3.0" },
     { name = "checkpoint-engine", marker = "extra == 'checkpoint-engine'", specifier = "==0.1.2" },
     { name = "cloudpickle", marker = "extra == 'diffusion'", specifier = "==3.1.2" },
     { name = "compressed-tensors", specifier = "==0.18.0" },
@@ -2471,7 +2435,6 @@ requires-dist = [
     { name = "nvidia-mathdx", specifier = "==25.6.0" },
     { name = "nvidia-ml-py" },
     { name = "nvidia-modelopt", marker = "extra == 'diffusion'" },
-    { name = "nvshmem4py-cu13" },
     { name = "openai", specifier = "==2.6.1" },
     { name = "openai-harmony", specifier = "==0.0.4" },
     { name = "opencv-python-headless", marker = "extra == 'diffusion'", specifier = "==4.10.0.84" },
@@ -2501,7 +2464,6 @@ requires-dist = [
     { name = "pyzmq", specifier = ">=25.1.2" },
     { name = "quack-kernels", specifier = "==0.6.4" },
     { name = "ray", extras = ["default"], marker = "extra == 'ray'", specifier = ">=2.55.1" },
-    { name = "regex" },
     { name = "remote-pdb", marker = "extra == 'diffusion'", specifier = "==2.1.0" },
     { name = "requests" },
     { name = "runai-model-streamer", marker = "extra == 'diffusion'", specifier = ">=0.15.7" },
@@ -2509,18 +2471,17 @@ requires-dist = [
     { name = "scikit-image", marker = "extra == 'diffusion'", specifier = "==0.25.2" },
     { name = "scipy" },
     { name = "sentence-transformers", marker = "extra == 'test'" },
-    { name = "sentencepiece", specifier = "==0.2.1" },
+    { name = "sentencepiece" },
     { name = "setproctitle" },
     { name = "sgl-deep-ep", specifier = "==0.1.2" },
-    { name = "sgl-deep-gemm", specifier = "==0.2.0" },
-    { name = "sgl-eval", marker = "extra == 'test'", specifier = "==0.1.2" },
+    { name = "sgl-deep-gemm", specifier = "==0.1.7" },
     { name = "sglang", extras = ["diffusion"], marker = "extra == 'all'" },
     { name = "sglang", extras = ["fastokens"], marker = "extra == 'test'" },
     { name = "sglang", extras = ["http2"], marker = "extra == 'all'" },
     { name = "sglang", extras = ["test"], marker = "extra == 'dev'" },
     { name = "sglang", extras = ["tracing"], marker = "extra == 'all'" },
-    { name = "sglang-kernel", specifier = "==0.4.7" },
-    { name = "smg-grpc-servicer", specifier = ">=0.9.0" },
+    { name = "sglang-kernel", specifier = "==0.4.6.post1" },
+    { name = "smg-grpc-servicer", specifier = ">=0.5.0" },
     { name = "soundfile", specifier = "==0.13.1" },
     { name = "st-attn", marker = "platform_machine != 'aarch64' and platform_machine != 'arm64' and extra == 'diffusion'", specifier = "==0.0.7" },
     { name = "tabulate", marker = "extra == 'test'" },
@@ -2545,7 +2506,7 @@ requires-dist = [
     { name = "watchfiles" },
     { name = "websockets", marker = "extra == 'diffusion'" },
     { name = "xatlas", marker = "extra == 'diffusion'" },
-    { name = "xgrammar", specifier = "==0.2.7" },
+    { name = "xgrammar", specifier = "==0.2.1" },
     { name = "xxhash" },
     { name = "zstandard" },
 ]
@@ -2553,14 +2514,11 @@ provides-extras = ["checkpoint-engine", "runai", "diffusion", "diffusion-qvg", "
 
 [[package]]
 name = "sglang-kernel"
-version = "0.4.7"
+version = "0.4.6.post1"
 source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "torch" },
-]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/77/6f/1644c1accba3150ed8784600444f8d62433e9a38bc517ed72f8b7f8fa0f8/sglang_kernel-0.4.7-cp310-abi3-manylinux2014_aarch64.whl", hash = "sha256:c4bb10b1bee183c441b352c4aaf203ce34627c27ed87a5cc4036c98aa557b81e", size = 27273260, upload-time = "2026-09-13T23:15:04.171Z" },
-    { url = "https://files.pythonhosted.org/packages/63/db/45fcc5dc66de8e8f2e63c908b30bc309f20086d6b063a1aaa813c6dc478f/sglang_kernel-0.4.7-cp310-abi3-manylinux2014_x86_64.whl", hash = "sha256:666f39de214a1558c5a98f43e6562e1032d8d08823b61f6a307830882f3241ce", size = 373107099, upload-time = "2026-09-13T22:54:51.625Z" },
+    { url = "https://files.pythonhosted.org/packages/5e/a9/5ef33ef2e387455c0c6317802db2faf37dcc91867c7f09c3ec4e6b6da1a2/sglang_kernel-0.4.6.post1-cp310-abi3-manylinux2014_aarch64.whl", hash = "sha256:7eccd61408b44b55ab35cdbcf8a05243ce2a9a5e781fabb00da375af7d7130a1", size = 30741582, upload-time = "2026-08-06T09:50:00.893Z" },
+    { url = "https://files.pythonhosted.org/packages/d9/d9/fd8d0b81f6e14bb1f5afcdbe99e7cd8a3862b7b70450660217ad70df59ee/sglang_kernel-0.4.6.post1-cp310-abi3-manylinux2014_x86_64.whl", hash = "sha256:5fee1007113c988bf6d448eca4706f7959631d449a429eb790a70bf89ab0ef04", size = 377094734, upload-time = "2026-08-06T09:17:50.774Z" },
 ]
 
 [[package]]
@@ -3049,7 +3007,7 @@ wheels = [
 
 [[package]]
 name = "xgrammar"
-version = "0.2.7"
+version = "0.2.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "apache-tvm-ffi" },
@@ -3060,10 +3018,10 @@ dependencies = [
     { name = "triton", marker = "platform_machine == 'x86_64'" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/81/e8/21a1661542d541c3c11e56062a213f6405824845a7fc8d3874447d5c6775/xgrammar-0.2.7.tar.gz", hash = "sha256:7674afeee5e6eff9672627b62d5ab0aa2347ea51674f4d78a5c160029f92bc3e", size = 2663916, upload-time = "2026-09-15T15:51:07.444Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d8/ea/6394caddd078d33772070eefaaf77cb0a826a3047b908b688dece7d040b5/xgrammar-0.2.1.tar.gz", hash = "sha256:4c48c251b75d211e9ffa7f4f4ac8b5b0164f89fd5f0d1883ad7ff4554922030d", size = 2427065, upload-time = "2026-05-17T21:39:26.576Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ad/35/5d56e9dbe6f0ccefebcb5212b7ded0af17bec7f2d148dd6403c7d247d063/xgrammar-0.2.7-cp312-cp312-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:2df1a2292f6b1c5cdc4b176ef2f22c58a837ac99fd854d93856160f31f14a4b0", size = 1113117, upload-time = "2026-09-15T15:50:26.492Z" },
-    { url = "https://files.pythonhosted.org/packages/9d/f2/cb90cfbcca316b3fa98b0928ec989f3fb75f6439bc5269c5c2121d361301/xgrammar-0.2.7-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:e4397798f73512ab5abccbadf0a7b6aaf0753ccc4f3171c43b14c4d22df1ed28", size = 1265122, upload-time = "2026-09-15T15:50:28.098Z" },
+    { url = "https://files.pythonhosted.org/packages/44/60/7c6194b66e043f36a7fbdbf7e6e0e4c94b151f7e53ad1b197f53e711f5d1/xgrammar-0.2.1-cp312-cp312-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:9e8dd9853958a263b4015ce79133a0ff4eaa9d22ef781fb2350c7dfc40c2c012", size = 44218929, upload-time = "2026-05-17T21:37:56.155Z" },
+    { url = "https://files.pythonhosted.org/packages/96/4b/327b3cf702b685a2be28d15490faa4beeac00c4fbcf9bb2d7db0fda32931/xgrammar-0.2.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:cbc6014dc1c92fc317b14519121c8163fe35fd934179e5a45d83f780ff231826", size = 44678489, upload-time = "2026-05-17T21:38:00.791Z" },
 ]
 
 [[package]]

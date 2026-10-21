@@ -6,10 +6,10 @@ export NODE_RANK="${NODE_RANK:-${LWS_WORKER_INDEX:-0}}"
 export SGLANG_DIST_ADDR="${SGLANG_DIST_ADDR:-${MASTER_ADDR}:20000}"
 echo "MASTER: ${SGLANG_DIST_ADDR}, RANK: ${NODE_RANK}"
 
-cd /root/Deploy-Env
+cd /root/Deploy-Env-AvaServe
 source .venv/bin/activate
 
-LOG_DIR="${LOG_DIR:-/root/Deploy-Env/logs/GLM-5.3/2n-pp4/${MASTER_ADDR}/rank-${NODE_RANK}/$(TZ=Asia/Shanghai date '+%Y-%m-%d_%H-%M-%S')}"
+LOG_DIR="${LOG_DIR:-/root/Deploy-Env-AvaServe/logs/GLM-5.3/2n-pp4/${MASTER_ADDR}/rank-${NODE_RANK}/$(TZ=Asia/Shanghai date '+%Y-%m-%d_%H-%M-%S')}"
 mkdir -p "$LOG_DIR"
 printf 'SGLang log: %s/sglang.log\n' "$LOG_DIR"
 
@@ -42,9 +42,9 @@ sglang serve \
     --watchdog-timeout 3600 \
     --dist-timeout 3600 \
     --chunked-prefill-size 8192 \
-    --max-running-requests 256 \
+    --max-running-requests 128 \
     --disable-prefill-cuda-graph \
-    --cuda-graph-max-bs-decode 66 \
+    --cuda-graph-max-bs-decode 34 \
     --mem-fraction-static 0.88 \
     --enable-metrics \
     --enable-cache-report \
