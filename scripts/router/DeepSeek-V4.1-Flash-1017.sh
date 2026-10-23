@@ -15,7 +15,8 @@ mkdir -p "${ROUTER_LOG_DIR}"
 python -m sglang_router.launch_router \
     --host 0.0.0.0 \
     --port 5050 \
-    --policy cache_aware --cache-threshold 0.5 --balance-abs-threshold 32 --balance-rel-threshold 1.5 --eviction-interval-secs 120 \
+    --policy cache_aware --cache-threshold 0.5 --cache-min-match-chars 40000 \
+    --balance-abs-threshold 64 --balance-rel-threshold 1.5 --eviction-interval-secs 120 \
     --log-dir "${ROUTER_LOG_DIR}" \
     --prometheus-host 0.0.0.0 --prometheus-port 29000 \
     --health-check-interval-secs 120 \

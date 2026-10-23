@@ -4,3 +4,7 @@
 [submodule "3rdparty/AvaServe"]
 	path = 3rdparty/AvaServe
 	url = git@github.com:sii-avalanche/AvaServe.git
+[submodule "3rdparty/sglang-avalanche"]
+	path = 3rdparty/sglang-avalanche
+	url = git@github.com:sii-avalanche/sglang.git
+	branch = feat/cache-aware-min-match-chars

@@ -502,7 +502,7 @@ requires-dist = [
     { name = "mooncake-transfer-engine-cuda13", specifier = ">=0.3.13" },
     { name = "nvidia-nccl-cu13", specifier = ">=2.30.4" },
     { name = "sglang", editable = "3rdparty/sglang/python" },
-    { name = "sglang-router", editable = "3rdparty/sglang/sgl-model-gateway/bindings/python" },
+    { name = "sglang-router", editable = "3rdparty/sglang-avalanche/sgl-model-gateway/bindings/python" },
     { name = "yicloud-sdk-python", specifier = ">=0.4.1" },
 ]
 
@@ -2566,7 +2566,7 @@ wheels = [
 [[package]]
 name = "sglang-router"
 version = "0.3.2"
-source = { editable = "3rdparty/sglang/sgl-model-gateway/bindings/python" }
+source = { editable = "3rdparty/sglang-avalanche/sgl-model-gateway/bindings/python" }
 dependencies = [
     { name = "aiohttp" },
     { name = "fastapi" },
