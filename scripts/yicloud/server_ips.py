@@ -63,7 +63,7 @@ def list_all(path: str, request_type, **kwargs) -> list[dict]:
     rows: list[dict] = []
     total: int | None = None
     while True:
-        payload = call(path, request_type(Limit=1000, Offset=len(rows), **kwargs))
+        payload = call(path, request_type(Limit=100, Offset=len(rows), **kwargs))
         page, count = payload.get("Data"), payload.get("Total")
         if not isinstance(page, list) or type(count) is not int or count < 0:
             raise ValueError(f"Invalid {path} response")

@@ -246,6 +246,7 @@ def main(argv=None):
                 if converged and args.once:
                     return 0
             except Exception:
+                LOG.exception("Worker synchronization failed; retrying next cycle")
                 if args.dry_run:
                     return 1
             delay = max(0, args.interval - (time.monotonic() - cycle))
