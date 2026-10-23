@@ -29,3 +29,6 @@ scripts/port-mapping
 /LiteLLM
 /experiments
 /analysis
+# Local profiling and ad hoc analysis artifacts
+/profiles/
+/reports/
