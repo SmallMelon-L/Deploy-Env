@@ -1,6 +1,8 @@
 # Install
 
 ```bash
+git submodule update --init --recursive
+
 uv venv --python 3.12
 uv pip install "torch==2.13.0" setuptools wheel ninja
 
